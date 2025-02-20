@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 2px solid #ccc; }
+        h1 { font-size: 2em; }
+        #carrito button { padding: 10px; font-size: 1em; }
+        #productos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .producto { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        .producto input { width: 50px; padding: 5px; }
+        .producto button { margin-top: 10px; padding: 10px; background-color: #28a745; color: white; border: none; cursor: pointer; }
+        .producto button:hover { background-color: #218838; }
+        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4); }
+        .modal-contenido { background-color: #fff; margin: 15% auto; padding: 20px; width: 50%; border-radius: 10px; }
+        .cerrar { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .cerrar:hover, .cerrar:focus { color: black; text-decoration: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tienda Online</h1>
+        <div id="carrito">
+            <button onclick="mostrarCarrito()">Carrito (<span id="carritoCantidad">0</span>)</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="productos">
+            <div class="producto" id="producto1">
+                <h2>Producto 1</h2>
+                <p>Descripción del producto 1</p>
+                <input type="number" id="cantidad1" value="1" min="1">
+                <button onclick="agregarAlCarrito('producto1')">Agregar al carrito</button>
+            </div>
+            <div class="producto" id="producto2">
+                <h2>Producto 2</h2>
+                <p>Descripción del producto 2</p>
+                <input type="number" id="cantidad2" value="1" min="1">
+                <button onclick="agregarAlCarrito('producto2')">Agregar al carrito</button>
+            </div>
+            <div class="producto" id="producto3">
+                <h2>Producto 3</h2>
+                <p>Descripción del producto 3</p>
+                <input type="number" id="cantidad3" value="1" min="1">
+                <button onclick="agregarAlCarrito('producto3')">Agregar al carrito</button>
+            </div>
+            <div class="producto" id="producto4">
+                <h2>Producto 4</h2>
+                <p>Descripción del producto 4</p>
+                <input type="number" id="cantidad4" value="1" min="1">
+                <button onclick="agregarAlCarrito('producto4')">Agregar al carrito</button>
+            </div>
+            <div class="producto" id="producto5">
+                <h2>Producto 5</h2>
+                <p>Descripción del producto 5</p>
+                <input type="number" id="cantidad5" value="1" min="1">
+                <button onclick="agregarAlCarrito('producto5')">Agregar al carrito</button>
+            </div>
+            <div class="producto" id="producto6">
+                <h2>Producto 6</h2>
+                <p>Descripción del producto 6</p>
+                <input type="number" id="cantidad6" value="1" min="1">
+                <button onclick="agregarAlCarrito('producto6')">Agregar al carrito</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="carritoModal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarCarrito()">&times;</span>
+            <h2>Tu Carrito</h2>
+            <ul id="carritoLista"></ul>
+            <p>Total: $<span id="carritoTotal">0</span></p>
+            <button onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script>
+       
